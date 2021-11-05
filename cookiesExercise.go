@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"log"
 	"net/http"
 	"strconv"
@@ -27,6 +28,8 @@ func incrementCookie(res http.ResponseWriter, req *http.Request) {
 		Name:  "visitCount",
 		Value: strconv.Itoa(count),
 	})
+
+	io.WriteString(res, "Website visits: "+strconv.Itoa(count))
 }
 
 func main() {
